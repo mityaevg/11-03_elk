@@ -96,3 +96,4 @@ systemctl status logstash.service
 ```
 <kbd>![](img/systemctl_status_logstash.png)</kbd>
 
+
