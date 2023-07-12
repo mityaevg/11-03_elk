@@ -76,8 +76,23 @@ systemctl restart kibana.service
 
 <kbd>![](img/get_cluster_health_command.png)</kbd>
 
+### Задание 3. Logstash
 
+Установите и запустите Logstash и Nginx. С помощью Logstash отправьте access-лог
+Nginx в Elasticsearch.
 
+Приведите скриншот интерфейса Kibana, на котором видны логи Nginx.
 
-
+Установим **Logstash**:
+```
+apt install logstash
+systemctl daemon-reload
+systemctl enable logstash.service
+systemctl start logstash.service
+```
+Проверка состояния работы сервиса:
+```
+systemctl status logstash.service
+```
+<kbd>![](img/systemctl_status_logstash.png)</kbd>
 
