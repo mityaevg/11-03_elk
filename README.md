@@ -132,7 +132,7 @@ systemctl start filebeat.service
 ```
 systemctl status filebeat.service
 ```
-<kbd>![](img/systemctl_status_filebeat.png)</kbd
+<kbd>![](img/systemctl_status_filebeat.png)</kbd>
 
 Внесем изменения в конфиг-файл **/etc/logstash/conf.d/nginx_logstash.conf** в **Logstash**:
 ```
@@ -155,4 +155,4 @@ processors:
 output.logstash:
   hosts: ["localhost:5044"]
 ```
-<kbd>![](img/kibana_filebeat_nginx.png)</kbd
+<kbd>![](img/kibana_filebeat_nginx.png)</kbd>
