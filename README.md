@@ -114,3 +114,43 @@ output {
   }
 }
 ```
+### Задание 4. Filebeat.
+
+Установите и запустите Filebeat. Переключите поставку логов Nginx с Logstash на Filebeat.
+
+Приведите скриншот интерфейса Kibana, на котором видны логи Nginx, которые были отправлены через Filebeat.
+
+Установим **Logstash**:
+```
+apt install filebeat
+systemctl daemon-reload
+systemctl enable filebeat.service
+systemctl start filebeat.service
+```
+Проверка состояния работы сервиса:
+```
+systemctl status filebeat.service
+```
+<kbd>![](img/systemctl_status_filebeat.png)</kbd
+
+Внесем изменения в конфиг-файл **/etc/logstash/conf.d/nginx_logstash.conf** в **Logstash**:
+```
+input {
+  beats {
+    port => 5044
+  }
+}
+```
+Внесем изменения в конфиг-файл **/etc/filebeat/filebeat.yml**:
+```
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/nginx/access.log
+processors:
+  - drop_fields:
+      fields: ["beat", "input_type", "prospector", "input", "host", "agent", "ecs"]
+output.logstash:
+  hosts: ["localhost:5044"]
+```
