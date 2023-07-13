@@ -96,4 +96,21 @@ systemctl status logstash.service
 ```
 <kbd>![](img/systemctl_status_logstash.png)</kbd>
 
+Создадим простой конфиг-файл **/etc/logstash/conf.d/nginx_logstash.conf**, который будет
+передавать логи из **Nginx** в **Elasticsearch**:
+```
+input {
+  file {
+    path => "/var/log/nginx/access.log"
+    type => "nginx"
+    start_position => "beginning"
+  }
+}
 
+output {
+  elasticsearch {
+    hosts => ["localhost:9200"]
+    data_stream => "true"
+  }
+}
+```
