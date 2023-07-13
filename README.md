@@ -114,6 +114,7 @@ output {
   }
 }
 ```
+---
 ### Задание 4. Filebeat.
 
 Установите и запустите Filebeat. Переключите поставку логов Nginx с Logstash на Filebeat.
@@ -154,3 +155,4 @@ processors:
 output.logstash:
   hosts: ["localhost:5044"]
 ```
+<kbd>![](img/kibana_filebeat_nginx.png)</kbd
